@@ -25,25 +25,7 @@ object Main extends App {
     } else {
       arr2(x) = arr2(x - 1)
     }
-    /*
-    println("====A")
 
-    println(cnt)
-    println(arr1(x))
-    println(arr2(x - 1))
-    println(arr1(x) + arr2(x - 1) - 1)
-    println("====B")
-    */
     cnt = List(cnt, arr1(x) + arr2(x)).min
   }
-
-/*
-  arr1.foreach(print)
-  println()
-
-  arr2.foreach(print)
-  println()
-  */
-  println(cnt)
-
 }
