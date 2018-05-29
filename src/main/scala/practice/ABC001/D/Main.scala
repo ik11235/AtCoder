@@ -27,12 +27,10 @@ object Main extends App {
     }
   }
 
-
-  def canJoinRange(a: Range, b: Range): Boolean = (a intersect b).nonEmpty
-
-  def joinRange(a: Range, b: Range): Range = {
-    Range(List(a.start, b.start).min, List(a.end, b.end).max)
+  def countUp(i: Int): Int = {
+    seiki(i + 1)
   }
+
 
   def marume(ss: String): (Int, Int) = {
     val Array(a, b) = ss.split("-").map(_.toInt)
@@ -41,29 +39,29 @@ object Main extends App {
     (aa, bb)
   }
 
+  var timer = Array.fill[Boolean](2401)(false)
   val n = scala.io.StdIn.readLine.toInt
-  var rangeList = List[Range]()
   (1 to n).foreach { _ =>
     val ss = scala.io.StdIn.readLine
     val (a, b) = marume(ss)
-    rangeList :+= Range(a, b + 1)
-  }
-
-  var loop = true
-  while (rangeList.size > 1 && loop) {
-    var nextRangeList = List[Range]()
-
-    loop = false
-    (0 to rangeList.size - 2).foreach { i =>
-      if (canJoinRange(rangeList(i), rangeList(i + 1))) {
-        loop = true
-        nextRangeList :+= joinRange(rangeList(i), rangeList(i + 1))
-      }
+    (a to b).foreach { i =>
+      timer(i) = true
     }
-    rangeList = nextRangeList
   }
 
-  rangeList.foreach { range =>
-    println(s"${range.start}-${range.end}")
+  var count = 0
+  var printnow = false
+  while (count <= 2400) {
+    if (!printnow && timer(count)) {
+      print("%04d".format(count))
+      printnow = true
+    } else if (printnow && !timer(count)) {
+      println("-%04d".format(count - 1))
+      printnow = false
+    } else if (printnow && count == 2400) {
+      println(s"-2400")
+      printnow = false
+    }
+    count = countUp(count)
   }
 }
