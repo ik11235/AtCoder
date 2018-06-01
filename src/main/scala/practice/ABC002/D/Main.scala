@@ -1,22 +1,6 @@
 package practice.ABC002.D
 
 object Main extends App {
-  def printArBL(array: Array[Boolean]): Unit = {
-    println(
-      array
-        .map(i =>
-          if (i) {
-            'T'
-          } else {
-            'F'
-        })
-        .mkString(""))
-  }
-
-  def printAr(manLink: Array[Array[Boolean]]): Unit = {
-    manLink.foreach(printArBL)
-  }
-
   val Array(n, m) = scala.io.StdIn.readLine.split(" ").map(_.toInt)
   var manLink = Array.fill[Boolean](n, n)(false)
   (0 until n).foreach { i =>
@@ -51,12 +35,10 @@ object Main extends App {
     val a = Array.fill[Boolean](i)(true) ++ Array.fill[Boolean](n - i)(false)
     a.permutations.foreach { flagArray =>
       if (check(flagArray, manLink)) {
-        //printArBL(flagArray)
         ans = a.count(_ == true)
       }
     }
   }
 
   println(ans)
-  //  printAr(manLink)
 }
