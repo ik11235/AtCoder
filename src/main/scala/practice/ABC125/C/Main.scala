@@ -15,14 +15,12 @@ object Main extends App {
   var ll = List(a.last)
   (1 until n).foreach { i =>
     rr = rr :+ gcd(rr(i - 1), a(i))
+
+    ll = gcd(ll.head, a(n - 1 - i)) +: ll
+
   }
 
-  (n - 2 to 0 by -1).foreach { i =>
-    // println(i)
-    ll = gcd(ll.head, a(i)) +: ll
-  }
   var ans = List(rr(rr.length - 2), ll(1)).max
-  //println((1 until n - 1))
   (1 until n - 1).foreach { i =>
     ans = List(ans, gcd(rr(i - 1), ll(i + 1))).max
   }
