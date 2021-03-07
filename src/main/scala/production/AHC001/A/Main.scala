@@ -20,6 +20,8 @@ object Main extends App {
   ylist = ylist.sorted
 
   data.foreach { dd =>
+    //NEXT: 現在地よりも下にある中での最小を探す
+
     val x = dd._1
     val y = dd._2
 
