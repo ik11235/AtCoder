@@ -40,7 +40,7 @@ object Main extends App {
       //次を取りに行くか
 
 
-      memo+=()
+//      memo+=()
     }
   }
   println(ans)
